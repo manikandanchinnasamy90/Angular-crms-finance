@@ -1,0 +1,14 @@
+<div *ngFor="let field of field.fieldGroup; index as i" class="d-flex">
+    <formly-field [field]="field" class="item"></formly-field>
+    <div>
+        <div class="btn btn-danger" (click)="remove(i)"><i class="fal fa-trash"></i> Remove</div>
+    </div>
+</div>
+
+<!-- Use a div instead of a button to keep parent form from triggering validation
+on button click -->
+<div *ngIf="to.maxLength == null || field.fieldGroup.length < to.maxLength" class="btn btn-outline-primary" (click)="add()"><i class="fal fa-plus"></i> Add {{to.label}}</div>
+
+<div *ngIf="showError" class="invalid-feedback" [style.display]="'block'">
+    <formly-validation-message [field]="field"></formly-validation-message>
+</div>

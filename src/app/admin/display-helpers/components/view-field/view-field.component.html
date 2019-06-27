@@ -1,0 +1,8 @@
+
+<div *ngIf="!onlyValue" >
+  <div class="row" *ngIf="value != null && metaData.type !== 'class' && metaData.type !== 'array'">
+    <dt class="label font-weight-bold col-sm-5 col-md-5 col-lg-4">{{displayName}}:</dt>
+    <dd class="value col-sm-7 col-md-7 col-lg-8">{{displayValue}}</dd>
+  </div>
+</div>
+<span *ngIf="onlyValue">{{displayValue}}</span>

@@ -1,0 +1,28 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: finance-manager-deployment
+  namespace: frontend-internal
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: finance-manager-deployment
+    spec:
+      imagePullSecrets:
+        - name: hg-dockerhub-secret
+      containers:
+        - name: finance-manager
+          image: 'docker.io/hgdockerza/finance-manager:master'
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "300M"
+              cpu: "0.2"
+            limits:
+              memory: "600M"
+              cpu: "0.4"
+          ports:
+            - containerPort: 8080
+              protocol: TCP

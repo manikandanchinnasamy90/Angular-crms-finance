@@ -1,0 +1,38 @@
+<div class="card mt-3" >
+  <div class="card-header">{{displayName}}</div>
+
+  <div class="card-body">
+    <div class="container-fluid">
+      <div *ngIf="metaData.class == null">
+        <div *ngFor="let arrayItem of value">
+          <p>{{arrayItem}}</p>
+        </div>
+      </div>
+      <div *ngIf="metaData.class != null">
+
+        <div class="card mb-3" *ngFor="let arrayItem of value">
+          <div class="card-header">{{displayName}} Details</div>
+          <div class="card-body">
+            <div class="container-fluid">
+              <dl>
+                <div *ngFor="let item of metaData.childOptions">
+                  <app-view-field *ngIf="item.type !== 'class' && item.type !== 'array'" [metaData]="item" [value]="arrayItem[item.path]"
+                    [referenceDataPathValues]="getPathValues(item, arrayItem)"></app-view-field>
+
+                  <app-view-class [object]="arrayItem[item.path]" *ngIf="arrayItem[item.path] != null && item.type === 'class'"
+                    [actionOptions]="actionOptions" [metaData]="item.childOptions" [displayName]="item.templateOptions != null ? item.templateOptions.label != null ? item.templateOptions.label : 'Content' : 'Content'"></app-view-class>
+                </div>
+
+              </dl>
+
+              <div class="d-flex align-items-baseline flex-wrap">
+                <app-action-button *ngFor="let action of relevantActionOptions" [actionOption]="action" [item]="arrayItem"></app-action-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

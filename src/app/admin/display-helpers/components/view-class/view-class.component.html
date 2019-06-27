@@ -1,0 +1,30 @@
+<div class="card mt-3">
+    <div class="card-header">
+        {{displayName}}
+    </div>
+    <div class="card-body">
+        <dl>
+            <div *ngFor="let item of metaData">
+                <app-view-array *ngIf="object[item.path] != null && item.type === 'array'" 
+                    [metaData]="item"
+                    [value]="object[item.path]"
+                    [actionOptions]="actionOptions"></app-view-array>
+
+                <app-view-array-table *ngIf="object[item.path] != null && item.type === 'array-table'" 
+                    [metaData]="item"
+                    [value]="object[item.path]"
+                    [actionOptions]="actionOptions"></app-view-array-table>
+
+                <app-view-class [object]="object[item.path]" *ngIf="object[item.path] != null && item.type === 'class'"
+                    [actionOptions]="actionOptions" [metaData]="item.childOptions" [displayName]="item.templateOptions != null ? item.templateOptions.label != null ? item.templateOptions.label : 'Response' : 'Response'"></app-view-class>
+
+                <app-view-field *ngIf="object[item.path] != null && metaData.type !== 'class' && item.type !== 'array' && item.type !== 'array-table'"
+                    [metaData]="item"
+                    [value]="object[item.path]"                    
+                    [referenceDataPathValues]='getPathValues(item)'>
+                    </app-view-field>
+            </div>
+
+        </dl>
+    </div>
+</div>

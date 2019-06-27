@@ -1,0 +1,89 @@
+@import "../../theme/theme-variables";
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+@mixin large-nav-icon {
+    font-size: 1.3rem;
+    padding: $spacer 0;
+}
+
+@mixin nav-collapsed {
+    width: 80px;
+    text-align: center;
+}
+
+@mixin nav-expanded {
+    width: 248px;
+    text-align: left;
+}
+
+:host {
+    background-color: $primary;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#sidebar {
+    transition: width 0.3s;
+
+    .nav-link {
+        i {
+            width: 24px;
+        }
+    }
+
+    .menu-heading {
+        font-size: 0.7rem;
+    }
+
+    .navbar-brand {
+        margin-left: 10px;
+    }
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@include media-breakpoint-up(lg) {
+    #sidebar {
+        @include nav-expanded;
+
+        &.show {
+            @include nav-collapsed;
+
+            .menu-title {
+                display: none;
+            }
+
+            .nav-link {
+                i {
+                    @include large-nav-icon;
+                }
+            }
+        }
+    }
+}
+
+
+@include media-breakpoint-down(md) {
+    #sidebar {
+        @include nav-expanded;
+
+        &:not(.show) {
+            @include nav-collapsed;
+
+            .menu-title {
+                display: none;
+            }
+
+            .nav-link {
+                i {
+                    @include large-nav-icon;
+                }
+            }
+        }
+    }
+}

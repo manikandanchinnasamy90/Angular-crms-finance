@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// Theme customization
+@import "theme/theme";
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.form-group.has-error{
+    .ng-select-container{
+        border-color: $red
+    }
+}
+
+.ng-select.disabled{
+    .ng-select-container{
+        background-color: rgba(36, 53, 69, 0.2);
+    }
+}

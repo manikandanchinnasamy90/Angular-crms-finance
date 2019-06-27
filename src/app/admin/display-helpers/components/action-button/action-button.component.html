@@ -1,0 +1,5 @@
+<button class="btn btn-default mr-2 mt-2" [ngClass]="actionOption == null? '' : actionOption.buttonClass" (click)="handleClick()"
+    [disabled]="loading || result === true" [hidden]="hidden"><i *ngIf="loading" class="fal fa-spinner-third fa-spin"></i> {{actionOption
+    == null? 'Action' : actionOption.buttonText}}</button>
+<label *ngIf="result === true" class="mr-3 text-success">Success</label>
+<label *ngIf="result === false" class="mr-3 text-danger">Failed {{resultMessage}}</label>

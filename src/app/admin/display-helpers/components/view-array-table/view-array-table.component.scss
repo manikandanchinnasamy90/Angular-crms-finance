@@ -1,0 +1,15 @@
+@import "../../../../../theme/theme-variables";
+
+.table-container {
+    overflow: auto;
+}
+
+.array-table-invalid {
+    color: $danger;
+    background-color: lighten($danger, 40);
+}
+
+.cell-error{
+    font-weight: bold;
+    font-size: 12px;
+}

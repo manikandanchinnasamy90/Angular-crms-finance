@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3"
+    [appHideRouteWithScope]="scopes.FinanceReference">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="h4 card-title">Finance Accounts</h2>
+        <p class="card-text">View corporate plus accounts.</p>
+        <div class="d-flex flex-column w-100">
+          <a [routerLink]="['/admin/finance/accounts']" [appHideRouteWithScope]="scopes.FinanceReference">
+            <button class="btn btn-outline-primary w-100">View accounts</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3"
+    [appHideRouteWithScope]="scopes.CorporateMultipleOnceOffPayment">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="h4 card-title">Finance Payments</h2>
+        <p class="card-text">Make payments from corporate plus accounts.</p>
+        <div class="d-flex flex-column w-100">
+          <a [routerLink]="['/admin/finance/transfer/inter-account']"
+            [appHideRouteWithScope]="scopes.CorporateOnceOffPayment" class="mb-3">
+            <button class="btn btn-outline-primary w-100"> Inter-account transfers</button>
+          </a>
+          <a [routerLink]="['/admin/finance/corp-multi-payment-excel']"
+            [appHideRouteWithScope]="scopes.CorporateMultipleOnceOffPayment">
+            <button class="btn btn-outline-primary w-100">Bulk payments</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3"
+    [appHideRouteWithScope]="scopes.FinanceReference + ',' + scopes.AddFinanceBeneficiary">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="h4 card-title">Corporate Pus Account Management</h2>
+        <p class="card-text">Manage corporate plus accounts that can be view and used for payments.</p>
+        <div class="d-flex flex-column w-100">
+          <a [routerLink]="['/admin/finance/corp-plus-accounts']" [appHideRouteWithScope]="scopes.FinanceReference"
+            class="mb-3">
+            <button class=" btn btn-outline-primary w-100">View corporate plus account details</button>
+          </a>
+          <a [routerLink]="['/admin/finance/add-corp-plus-account']"
+            [appHideRouteWithScope]="scopes.AddFinanceBeneficiary">
+            <button class="btn btn-outline-primary w-100">Add corporate plus account</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

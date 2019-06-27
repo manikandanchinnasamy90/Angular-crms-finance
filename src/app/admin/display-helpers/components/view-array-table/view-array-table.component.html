@@ -1,0 +1,47 @@
+<div class="card mt-3">
+  <div class="card-header">{{displayName}}</div>
+
+  <div class="card-body">
+    <div class="container-fluid">
+      <div *ngIf="metaData.class != null" class="table-container">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th *ngFor="let item of metaData.childOptions"
+                [ngClass]="{'text-right': item.templateOptions.type !== 'text'}">{{item.templateOptions.label}}</th>
+              <th scope="col" *ngIf="relevantActionOptions.length > 0"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let arrayItem of value; index as i">
+              <td class="align-middle">
+                {{i + 1}}
+              </td>
+              <td *ngFor="let item of metaData.childOptions" class="align-middle"
+                [ngClass]="{'text-right': item.templateOptions.type !== 'text', 'array-table-invalid': isValid(arrayItem[item.path], item.templateOptions) != ''}">
+
+                <div [ngSwitch]="item.templateOptions.format">
+                  <i *ngSwitchCase="'currency'" class="text-nowrap">{{arrayItem[item.path] | customCurrency }}</i>
+                  <i *ngSwitchCase="'date'" class="text-nowrap">{{arrayItem[item.path] | customDate }}</i>
+                  <i *ngSwitchCase="'dateTime'" class="text-nowrap">{{arrayItem[item.path] | customDateTime }}</i>
+                  <app-view-field *ngSwitchDefault [metaData]="item" [value]="arrayItem[item.path]"
+                    [onlyValue]="true" [referenceDataPathValues]="getPathValues(item, arrayItem)"></app-view-field>
+                </div>
+                <div class="cell-error" *ngIf="isValid(arrayItem[item.path], item.templateOptions) != ''">
+                    {{isValid(arrayItem[item.path], item.templateOptions)}}
+                </div>
+              </td>
+
+              <td *ngIf="relevantActionOptions.length > 0">
+                <app-action-button *ngFor="let action of relevantActionOptions" [actionOption]="action"
+                  [item]="arrayItem"></app-action-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

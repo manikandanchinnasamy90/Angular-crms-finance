@@ -1,0 +1,15 @@
+<ng-select [items]="to.options | async" 
+           [loading]="to.loading"
+           [ngClass]="{'disabled' : to.disabled}"
+           bindLabel="{{to.labelProp}}"
+           bindValue="{{to.valueProp}}"
+           (change)="onChange($event)"
+           (clear)="onClear()"
+           [(ngModel)]='currentValue'
+           placeholder='Select value'
+           [searchFn]="customSearch"
+           appendTo="body">
+            <ng-template ng-option-tmp let-item="item">
+                {{item[to.labelProp]}} <small class="text-muted">{{item[to.valueProp]}}</small>
+            </ng-template>
+</ng-select>

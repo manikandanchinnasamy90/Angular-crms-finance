@@ -1,0 +1,35 @@
+<h2 class="h3 pb-3" id="topOfPage"> Corporate plus multiple payments
+</h2>
+<div class="mb-2" *ngIf="!loadingFile && !callingApi && results == null">
+  <a href="./assets/corportate-payment-template.xlsx">Download Excel Import Template</a>
+</div>
+<div class="input-group" *ngIf="!loadingFile && results == null">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile01"
+      accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' (change)='openFile($event)'>
+    <label class="custom-file-label" for="inputGroupFile01">Choose Excel file with payment information</label>
+  </div>
+</div>
+<p *ngIf="loadingFile">Reading file...</p>
+<p *ngIf="callingApi">Making payments...</p>
+<p *ngIf="!callingApi && results != null">Done! 
+  <button class="btn btn-primary ml-3"
+    (click)="results = null; data.listOfPayments = [];">Make another payment</button>
+    <button class="btn btn-outline-primary ml-3"
+    (click)="downloadResults();">Download results to CSV</button>
+  </p>
+
+<div *ngIf="!callingApi && results == null && data != null && data.listOfPayments.length > 0" class="mt-5">
+  <h4>Verify the following imported data</h4>
+  <app-view-class [object]="data" [displayName]="'Imported Data'"></app-view-class>
+  <p class="text-danger mt-3" [hidden]="totalPaymentAmount <= 5000">Total payments may not exceed R5000.</p>
+  <p class="text-danger mt-3" [hidden]="importIsValid">The imported file appears to be invalid. Please check the values highlighted in red in rows {{invalidRows.join(', ')}}.</p>
+  <button class="btn btn-primary mb-3" (click)="doc.getElementById('topOfPage').scrollIntoView(); processPayments();"
+    [disabled]="!importIsValid || totalPaymentAmount > 5000">Process payments</button>
+</div>
+
+<div *ngIf="results != null && results.listOfPayments.length > 0">
+  <h4>Results</h4>
+
+  <app-view-class [object]="results" [displayName]="'Results'"></app-view-class>
+</div>

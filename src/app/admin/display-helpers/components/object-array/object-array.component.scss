@@ -1,0 +1,27 @@
+.btn.btn-danger {
+    margin-left: 20px;
+    white-space: nowrap;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 7px;
+}
+
+.item ::ng-deep formly-group {
+    display: flex;
+
+    formly-field {
+        min-width: 200px;
+        margin-left: 20px;
+
+        &:first-child {
+            margin-left: 0px;
+        }
+
+        &.hidden {
+            display: none;
+            min-width: auto;
+            margin-left: 0;
+        }
+    }
+}

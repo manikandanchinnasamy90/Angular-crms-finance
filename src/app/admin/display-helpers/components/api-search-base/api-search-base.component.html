@@ -1,0 +1,49 @@
+<ng-template #downloadModal let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Downloading CSV</h4>
+  </div>
+  <div class="modal-body">
+    <p>
+      <ngb-progressbar type="success" [striped]="true" [animated]="true" [value]="exportDataProgress * 100">
+      </ngb-progressbar>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="downloadAborting = true; cancelDownload();"
+      [disabled]="downloadAborting">{{downloadAborting? "Aborting..." : "Abort"}}</button>
+  </div>
+</ng-template>
+
+<h2 class="h3 pb-3"> {{title}}
+</h2>
+
+<div *ngIf="error != null" class="alert alert-danger">
+  {{error.message}}
+  <app-view-class *ngIf="errorObject != null" class="pt-2 text-body" [object]="errorObject"
+    [displayName]="'Error Response'"></app-view-class>
+</div>
+
+<form [formGroup]="form" class="mb-3" (ngSubmit)="executeSearch()">
+  <formly-form [form]="form" [fields]="fields" [model]="wrappedModel">
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="loading">{{loading? 'Loading...' :'Search'}}</button>
+    <button type="button" *ngIf="canDownload" (click)="onDownloadRequested($event,downloadModal)" class="btn btn-outline-primary mt-3 ml-3"
+      [disabled]="loading"><i class="fal fa-file-csv"></i>
+      {{generatingDownload? 'Generating... ':'Download CSV'}}</button>
+  </formly-form>
+</form>
+
+<h2 class="h4 pt-3"> Search results <span *ngIf="includesPaging">(page {{pageNumber}})</span>
+</h2>
+<div class="row justify-content-between" *ngIf="includesPaging">
+  <div class="col-6">
+    <button class="btn btn-secondary" [disabled]="pageNumber <= 0 || loading" (click)="previousPage()">Previous
+      Page</button>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-secondary float-right" [disabled]="loading" (click)="nextPage()">Next Page</button>
+  </div>
+</div>
+
+<app-view-class *ngIf="!loading && responseResult != null" [object]="responseResult" [displayName]="'Search result'"
+  [actionOptions]="actionOptions"></app-view-class>
+<div *ngIf="loading">Loading...</div>

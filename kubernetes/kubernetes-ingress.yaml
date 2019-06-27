@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: finance-manager-ingress
+  namespace: frontend-internal
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - hosts:
+      - finance-manager.hellogroup.co.za
+      secretName: ingress-tls-cert
+  rules:
+  - host: finance-manager.hellogroup.co.za
+    http:
+      paths:
+      - path: /
+        backend:
+         serviceName: finance-manager-service
+         servicePort: 80

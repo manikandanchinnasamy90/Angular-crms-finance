@@ -1,0 +1,18 @@
+/*
+ * Global application theme.
+ * Framework overrides and customization goes here.
+ */
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.btn.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.btn.hidden {
+    display: none;
+}

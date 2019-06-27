@@ -1,0 +1,17 @@
+<div class="bg-primary navbar navbar-dark justify-content-end" *ngIf="authService.isLoggedIn">
+
+    <label class="navbar-brand menu-item flex-fill" [ngClass]="{'d-block d-lg-none': !sideBarService.isCollapsed, 'd-none d-lg-block' : sideBarService.isCollapsed }">
+        <img src="assets/images/icon-with-text.svg"></label>
+    <div id="navbar-menu">
+        <div class="navbar-nav ">
+            <div class="nav-item" ngbDropdown placement="bottom-right">
+                <a id="user-dropdown" class="nav-link" ngbDropdownToggle>
+                    <label id="lblUsername">{{ username }} </label>
+                </a>
+                <div class="text-center" ngbDropdownMenu aria-labelledby="user-dropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px);">
+                    <button class="dropdown-item" (click)="authService.logout()" translate>Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

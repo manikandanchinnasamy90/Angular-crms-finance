@@ -1,0 +1,17 @@
+<h2 class="h3 pb-3"> {{title}}
+</h2>
+
+<div [hidden]="!loading">Loading...</div>
+<div *ngIf="error != null" class="alert alert-danger">
+    {{error.message}}
+    <app-view-class *ngIf="errorObject != null" class="pt-2 text-body" [object]="errorObject" [displayName]="'Error Response'"></app-view-class>
+</div>
+<div *ngIf="!loading && responseResult != null">
+    <button class="btn btn-primary" (click)="options.resetModel(); reset(); resetModel(); options.updateInitialValue()">Clear form</button>
+    <app-view-class [object]="responseResult" [displayName]="'Response'" [actionOptions]="actionOptions"></app-view-class>    
+</div>
+<form [formGroup]="form" class="mb-3" (ngSubmit)="submit()" [hidden]="loading || responseResult != null" #formDirective="ngForm" (keydown.enter)="$event.preventDefault()">
+    <formly-form [form]="form" [fields]="fields" [model]="wrappedModel" [options]="options">
+        <button type="submit" class="btn btn-primary mt-3">{{buttonText == null? title : buttonText}}</button>
+    </formly-form>
+</form>

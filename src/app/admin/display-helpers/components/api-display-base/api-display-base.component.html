@@ -1,0 +1,25 @@
+<div class="row">
+    <h3 class="col-12">
+        {{title}}: {{modelId}}
+        <a *ngIf="editUrl != null" (click)="navigateToEdit()" class="float-right">
+            <button class="btn btn-primary">Edit</button>
+        </a>
+        <button class="btn btn-link" (click)="refresh()"><i class="fal fa-sync-alt"></i></button>
+    </h3>
+</div>
+<div class="row" *ngIf="informationMessage != null">
+    <div class="col-12">
+        <ngb-alert [type]="'info'" (close)="informationMessage = null">{{informationMessage}}</ngb-alert>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="data == null && errorMessage == null" class="col-12">Loading...</div>
+    <div class="col-12" *ngIf="errorMessage != null">
+        <div class="alert alert-danger">
+            {{errorMessage}}
+            <app-view-class *ngIf="errorObject != null" class="pt-2 text-body" [object]="errorObject" [displayName]="'Error Response'"></app-view-class>
+        </div>
+    </div>
+    <app-view-class *ngIf="data != null" [object]="data" class="col-12"
+        [actionOptions]="actionOptions" [displayName]="'Response'"></app-view-class>
+</div>

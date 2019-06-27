@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Session timeout</h4>
+</div>
+<div class="modal-body">
+  <p class="text-center"><strong>Your session will expire in</strong></p>
+  <div class="text-center"><span class="h1">{{timeRemaining}}</span> <span class="h3 text-muted pl-2">seconds</span></div>
+</div>
+<div class="modal-footer">
+  <button type="button" [disabled]="loading" class="btn btn-outline-secondary" (click)="logout()">Logout</button>
+  <button type="button" [disabled]="loading" class="btn btn-success" (click)="refreshToken()"><i class="fal fa-spinner-third fa-spin mr-1" *ngIf="loading"></i>I'm still busy</button>
+</div>

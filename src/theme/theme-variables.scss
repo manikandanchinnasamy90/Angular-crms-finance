@@ -1,0 +1,75 @@
+/*
+ * Application global variables.
+ */
+
+$fa-font-path: "~@fortawesome/fontawesome-pro/webfonts";
+
+@import "~@fortawesome/fontawesome-pro/scss/light";
+@import "~@fortawesome/fontawesome-pro/scss/regular";
+@import ".~@fortawesome/fontawesome-pro/scss/solid";
+@import "~@fortawesome/fontawesome-pro/scss/brands";
+@import "~@fortawesome/fontawesome-pro/scss/fontawesome";
+
+$white: #fff !default;
+$gray-100: rgba(36, 53, 69, 0.1) !default;
+$gray-200: rgba(36, 53, 69, 0.2) !default;
+$gray-300: rgba(36, 53, 69, 0.3) !default;
+$gray-400: rgba(36, 53, 69, 0.4) !default;
+$gray-500: rgba(36, 53, 69, 0.5) !default;
+$gray-600: rgba(36, 53, 69, 0.6) !default;
+$gray-700: rgba(36, 53, 69, 0.7) !default;
+$gray-800: rgba(36, 53, 69, 0.8) !default;
+$gray-900: rgba(36, 53, 69, 0.9) !default;
+$black: rgba(36, 53, 69, 1) !default;
+
+$blue: #001D38 !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #E4255E !default;
+$orange: #E4255E !default;
+$yellow: #F39C12 !default;
+$green: #01C804 !default;
+$teal: #2ECBBE !default;
+$cyan: #007AFF !default;
+
+@import "~bootswatch/dist/flatly/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/flatly/bootswatch";
+
+.text-secondary {
+    color: #A7AEB5 !important;
+}
+
+.bg-primary .navbar-nav .active > .nav-link {
+    color: $red !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    &:hover,
+    &:focus {
+        color: $cyan !important;
+    }
+}
+
+.btn-link {
+    color: $cyan !important;
+}
+
+.nav-tabs {
+    .nav-link {
+        color: $cyan !important;
+
+        &.active {
+            color: $blue !important;
+        }
+
+        &.disabled {
+            color: $gray-600 !important;
+        }
+
+        &:hover {
+            color: $blue !important;
+        }
+    }
+}

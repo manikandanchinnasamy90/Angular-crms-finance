@@ -1,0 +1,66 @@
+<nav id="sidebar" class="navbar navbar-dark bg-primary p-fixed flex-column align-items-start"
+  [ngClass]="{'show': sideBarService.isCollapsed}">
+  <div class="d-flex">
+    <!-- Toggle Sidebar -->
+
+    <button type="button" class="navbar-toggler" (click)="sideBarService.isCollapsed = !sideBarService.isCollapsed"
+      aria-controls="sidebar" [attr.aria-expanded]="!sideBarService.isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navigation -->
+    <a class="navbar-brand menu-item pl-3"><img src="assets/images/icon-with-text.svg"></a>
+  </div>
+
+  <ul class="navbar-nav flex-column pt-4 w-100">
+    <li class="nav-item" [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/dashboard']" class="nav-link"><i class="fal fa-home"></i><span
+          class="menu-title">Dashboard</span></a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav flex-column w-100">
+    <li class="nav-item" [routerLinkActive]="['active']" [appHideRouteWithScope]="scopes.FinanceReference">
+      <a class="nav-link" [routerLink]="['/admin/finance/accounts']"><i class="fal fa-coins"></i><span
+          class="menu-title">
+          Corporate Accounts
+        </span></a>
+    </li>
+  </ul>
+  
+  <h6 class="menu-heading menu-title text-secondary text-uppercase font-weight-bold pt-4"
+    [appHideRouteWithScope]="scopes.CorporateMultipleOnceOffPayment">
+    Finance Payments</h6>
+  <ul class="navbar-nav flex-column w-100">
+    <li class="nav-item" [routerLinkActive]="['active']" [appHideRouteWithScope]="scopes.CorporateMultipleOnceOffPayment">
+      <a class="nav-link" [routerLink]="['/admin/finance/transfer/inter-account']"><i class="fal fa-exchange"></i><span
+          class="menu-title">
+          Inter-account Transfers
+        </span></a>
+    </li>
+    <li class="nav-item" [routerLinkActive]="['active']"
+      [appHideRouteWithScope]="scopes.CorporateMultipleOnceOffPayment">
+      <a class="nav-link" [routerLink]="['/admin/finance/corp-multi-payment-excel']"><i
+          class="fal fa-file-import"></i><span class="menu-title">
+          Bulk Payments
+        </span></a>
+    </li>
+  </ul>
+
+  <h6 class="menu-heading menu-title text-secondary text-uppercase font-weight-bold pt-4"
+    [appHideRouteWithScope]="scopes.FinanceReference + ',' + scopes.AddFinanceBeneficiary">
+    Account Management</h6>
+  <ul class="navbar-nav flex-column w-100">
+    <li class="nav-item" [routerLinkActive]="['active']" [appHideRouteWithScope]="scopes.FinanceReference">
+      <a class="nav-link" [routerLink]="['/admin/finance/corp-plus-accounts']"><i
+          class="fal fa-credit-card-front"></i><span class="menu-title">
+          View Account Details
+        </span></a>
+    </li>
+    <li class="nav-item" [routerLinkActive]="['active']" [appHideRouteWithScope]="scopes.AddFinanceBeneficiary">
+      <a class="nav-link" [routerLink]="['/admin/finance/add-corp-plus-account']"><i class="fal fa-plus"></i><span
+          class="menu-title">
+          Add Corporate Plus Account
+        </span></a>
+    </li>
+  </ul>
+</nav>
